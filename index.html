@@ -3,59 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Boris | Ivorian Contemporary Gallery</title>
+    <title> Boris Edrc | Ivorian Contemporary Art</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">THE ART OF Boris</div>
-            <ul>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#about">The Artist</a></li>
-                <li><a href="#contact">Inquire</a></li>
-                <li><a href="https://www.etsy.com" class="shop-btn">Shop Bookmarks</a></li>
-            </ul>
-        </nav>
+
+    <nav>
+        <div class="logo">ART OF IVORY COAST</div>
+        <ul class="nav-links">
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">The Artist</a></li>
+            <li><a href="https://www.etsy.com" class="cta-btn">Shop Bookmarks</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text reveal">
+            <h1>Heritage <br><span>Reimagined</span></h1>
+            <p>A bridge between ancestral West African storytelling and modern geometric abstraction.</p>
+        </div>
     </header>
 
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Heritage in Geometry</h1>
-            <p>Exploring Ivorian culture through abstract movement and traditional motifs.</p>
+    <main id="gallery">
+        <div class="section-header reveal">
+            <h2>The Collection</h2>
+            <p>Click an image to view in full detail.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="art-item reveal">
+                <div class="img-container">
+                    <img src="painting_1.jpg" alt="Ivorian Abstract Work" onclick="openModal(this.src)">
+                </div>
+                <div class="art-meta">
+                    <h3>Cultural Movement I</h3>
+                    <span>Acrylic on Canvas</span>
+                </div>
+            </div>
+
+            <div class="art-item reveal">
+                <div class="img-container">
+                    <img src="painting_2.jpg" alt="Ivorian Portrait Work" onclick="openModal(this.src)">
+                </div>
+                <div class="art-meta">
+                    <h3>Geometric Identity</h3>
+                    <span>Mixed Media</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="about" class="reveal">
+        <div class="about-content">
+            <h2>The Artist</h2>
+            <p>Direct from the Ivory Coast, Boris Edec uses bold color blocking and traditional motifs to explore the rhythm of West African life. Every footprint and line represents a journey—from the soil of heritage to the canvas of the future.</p>
         </div>
     </section>
 
-    <section id="gallery">
-        <h2>Selected Works</h2>
-        <div class="grid">
-            <div class="art-card">
-                <img src="painting_1.jpg" alt="Ivorian Abstract Painting">
-                <div class="info">
-                    <h3>Hard-working Woman</h3>
-                    <p>Acrylic on Canvas, 2014</p>
-                </div>
-            </div>
-            <div class="art-card">
-                <img src="painting_2.jpg" alt="Ivorian Abstract Painting">
-                <div class="info">
-                    <h3>Survival</h3>
-                    <p>Acrylic on Canvas, 2015</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="about-container">
-            <h2>The Artist's Journey</h2>
-            <p>Hailing from the Ivory Coast, Boris blends the vibrant energy of West African street life with the structured precision of geometric abstraction. His work serves as a bridge between ancestral storytelling and modern visual language...</p>
-        </div>
-    </section>
+    <div id="artModal" class="modal" onclick="this.style.display='none'">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="fullImg">
+    </div>
 
     <footer>
-        <p>&copy; 2026 Boris Studio. All Rights Reserved.</p>
+        <p>&copy; 2026 Boris Edec | Built for the Museum Stage</p>
     </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Lightbox Function
+        function openModal(src) {
+            document.getElementById('artModal').style.display = "block";
+            document.getElementById('fullImg').src = src;
+        }
+    </script>
 </body>
 </html>
