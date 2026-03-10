@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Boris Edec</title>
+    <title>The Art of [Uncle's Name]</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 </head>
@@ -67,5 +67,38 @@
             <div class="detail-text">
                 <span class="category">Mixed Media</span>
                 <h2>Geometric Identity</h2>
-                <p>A study in symmetry
+                <p>A study in symmetry and heritage. By using a checkered backdrop, the artist challenges the viewer to find the human form within the rigid lines, reflecting the resilience of individual identity within complex societal structures.</p>
+                <a href="#gallery" class="back-link">← Back to Gallery</a>
+            </div>
+            <div class="detail-img">
+                <img src="painting_2.jpg" alt="Detail 2">
+            </div>
+        </div>
+    </section>
 
+    <section id="about" class="reveal">
+        <div class="about-flex">
+            <div class="artist-photo">
+                <img src="artist_photo.jpg" alt="The Artist at work">
+            </div>
+            <div class="about-text">
+                <h2>The Artist</h2>
+                <p>Direct from the Ivory Coast, [Uncle's Name] has spent decades refining a style that bridges the gap between ancestral West African storytelling and global contemporary art. His work is held in private collections and is now being prepared for international exhibition.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 [Uncle's Name] | Built for the Museum Stage</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
