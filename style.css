@@ -78,5 +78,3 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dar
 /* Animations */
 .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
 .reveal.show { opacity: 1; transform: translateY(0); }
-
-
