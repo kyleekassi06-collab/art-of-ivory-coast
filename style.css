@@ -1,0 +1,57 @@
+:root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --accent: #d4af37; /* Gold accent */
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, .logo {
+    font-family: 'Playfair Display', serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    align-items: center;
+}
+
+nav ul { display: flex; list-style: none; gap: 2rem; }
+nav a { text-decoration: none; color: var(--text); font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+
+.shop-btn {
+    border: 1px solid var(--text);
+    padding: 0.5rem 1rem;
+    transition: 0.3s;
+}
+
+.shop-btn:hover { background: var(--text); color: white; }
+
+#hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    padding: 5%;
+}
+
+.art-card img { width: 100%; height: auto; transition: transform 0.5s; }
+.art-card:hover img { transform: scale(1.02); }
+
+.info { padding-top: 1rem; border-top: 1px solid #eee; margin-top: 1rem; }
+
+#about { padding: 10% 20%; background: #1a1a1a; color: white; text-align: center; }
