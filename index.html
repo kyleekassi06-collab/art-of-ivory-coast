@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Boris Edrc | Ivorian Contemporary Art</title>
+    <title>The Art of [Uncle's Name]</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <nav>
-        <div class="logo">ART OF IVORY COAST</div>
+        <div class="logo">IVORIAN HERITAGE</div>
         <ul class="nav-links">
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#about">The Artist</a></li>
@@ -21,72 +21,50 @@
     <header class="hero">
         <div class="hero-text reveal">
             <h1>Heritage <br><span>Reimagined</span></h1>
-            <p>A bridge between ancestral West African storytelling and modern geometric abstraction.</p>
+            <p>Exploring the rhythm of West African life through geometric precision.</p>
         </div>
     </header>
 
     <main id="gallery">
         <div class="section-header reveal">
             <h2>The Collection</h2>
-            <p>Click an image to view in full detail.</p>
+            <p>Select a piece to view the story behind the art.</p>
         </div>
 
         <div class="gallery-grid">
-            <div class="art-item reveal">
-                <div class="img-container">
-                    <img src="painting_1.jpg" alt="Ivorian Abstract Work" onclick="openModal(this.src)">
+            <div class="art-item reveal" onclick="document.getElementById('detail-1').scrollIntoView({behavior: 'smooth'})">
+                <div class="frame">
+                    <img src="painting_1.jpg" alt="Work 1">
                 </div>
-                <div class="art-meta">
-                    <h3>Cultural Movement I</h3>
-                    <span>Acrylic on Canvas</span>
-                </div>
+                <h3>Cultural Movement I</h3>
             </div>
 
-            <div class="art-item reveal">
-                <div class="img-container">
-                    <img src="painting_2.jpg" alt="Ivorian Portrait Work" onclick="openModal(this.src)">
+            <div class="art-item reveal" onclick="document.getElementById('detail-2').scrollIntoView({behavior: 'smooth'})">
+                <div class="frame">
+                    <img src="painting_2.jpg" alt="Work 2">
                 </div>
-                <div class="art-meta">
-                    <h3>Geometric Identity</h3>
-                    <span>Mixed Media</span>
-                </div>
+                <h3>Geometric Identity</h3>
             </div>
         </div>
     </main>
 
-    <section id="about" class="reveal">
-        <div class="about-content">
-            <h2>The Artist</h2>
-            <p>Direct from the Ivory Coast, Boris Edec uses bold color blocking and traditional motifs to explore the rhythm of West African life. Every footprint and line represents a journey—from the soil of heritage to the canvas of the future.</p>
+    <section id="detail-1" class="detail-section reveal">
+        <div class="detail-container">
+            <div class="detail-img">
+                <img src="painting_1.jpg" alt="Detail 1">
+            </div>
+            <div class="detail-text">
+                <span class="category">Original Canvas</span>
+                <h2>Cultural Movement I</h2>
+                <p>This piece explores the transition between traditional Ivorian symbols and modern urban life. The footprints represent the ancestors' path, while the bold, geometric color blocks symbolize the structured growth of the new generation.</p>
+                <a href="#gallery" class="back-link">← Back to Gallery</a>
+            </div>
         </div>
     </section>
 
-    <div id="artModal" class="modal" onclick="this.style.display='none'">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="fullImg">
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Boris Edec | Built for the Museum Stage</p>
-    </footer>
-
-    <script>
-        // Scroll Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        });
-
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // Lightbox Function
-        function openModal(src) {
-            document.getElementById('artModal').style.display = "block";
-            document.getElementById('fullImg').src = src;
-        }
-    </script>
-</body>
-</html>
+    <section id="detail-2" class="detail-section reveal">
+        <div class="detail-container inverted">
+            <div class="detail-text">
+                <span class="category">Mixed Media</span>
+                <h2>Geometric Identity</h2>
+                <p>A study in symmetry
