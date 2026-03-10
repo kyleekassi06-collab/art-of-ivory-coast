@@ -1,30 +1,80 @@
-/* Force a visible change to test connection */
-body {
-    background-color: #f0f0f0 !important;
-    font-family: 'Helvetica', sans-serif !important;
-    padding: 50px !important;
+:root {
+    --bg: #ffffff;
+    --dark: #121212;
+    --accent: #c5a059;
+    --border: #e0e0e0;
 }
 
-nav {
-    background: #121212;
-    padding: 20px;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
 
-nav a {
-    color: white !important;
-    text-decoration: none;
-    margin-right: 20px;
-}
-
+/* Center everything */
 .gallery-grid {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 50px;
+    flex-wrap: wrap;
+    gap: 5rem;
+    padding: 5% 10%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-img {
-    border: 10px solid white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    width: 300px;
+/* The Frame Effect */
+.frame {
+    padding: 15px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid var(--border);
+    transition: 0.4s;
 }
+
+.art-item { width: 400px; text-align: center; cursor: pointer; }
+.art-item img { width: 100%; height: 500px; object-fit: cover; }
+.art-item h3 { margin-top: 1.5rem; font-family: 'Playfair Display'; font-size: 1.2rem; }
+
+/* Detail Sections */
+.detail-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 10%;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-container {
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detail-img img { width: 500px; height: 650px; object-fit: cover; box-shadow: 20px 20px 60px rgba(0,0,0,0.05); }
+
+.detail-text { max-width: 500px; }
+.category { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent); }
+.detail-text h2 { font-family: 'Playfair Display'; font-size: 3rem; margin: 1rem 0; }
+.back-link { display: block; margin-top: 2rem; text-decoration: none; color: #888; font-size: 0.9rem; }
+
+/* About Section Flex */
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.artist-photo img { width: 450px; height: 550px; object-fit: cover; filter: grayscale(20%); }
+
+/* Mobile Compatibility */
+@media (max-width: 900px) {
+    .detail-container, .about-flex { flex-direction: column; text-align: center; }
+    .detail-img img, .artist-photo img { width: 100%; height: auto; }
+}
+
+/* Animations */
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
