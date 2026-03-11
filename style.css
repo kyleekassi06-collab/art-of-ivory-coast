@@ -2,77 +2,124 @@
     --bg: #ffffff;
     --dark: #121212;
     --accent: #c5a059;
-    --border: #e0e0e0;
+    --border: #e8e8e8;
+    --side-padding: 8vw; /* Centering helper */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
 
-/* 1. Translucent Sticky Nav */
+/* Sticky Glass Nav */
 nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 5%; 
+    padding: 1rem var(--side-padding); 
     position: sticky; top: 0; z-index: 1000;
-    background: rgba(255, 255, 255, 0.8); /* Translucent White */
-    backdrop-filter: blur(15px); /* The Glass Effect */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.logo { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 2px; }
-.nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--dark); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+.logo { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
+.nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--dark); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; }
 
-.cta-btn { background: var(--dark); color: white !important; padding: 0.6rem 1.2rem; border-radius: 50px; transition: 0.3s; }
+.cta-btn { background: var(--dark); color: white !important; padding: 0.7rem 1.6rem; border-radius: 50px; transition: 0.3s ease; }
 .cta-btn:hover { background: var(--accent); transform: translateY(-2px); }
 
-/* 2. Hover Zoom Animation */
+/* Minimal Hero */
+.hero { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 var(--side-padding); background: #fdfdfd; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1.1; }
+.accent { color: var(--accent); font-style: italic; font-weight: 400; }
+.hero p { max-width: 600px; margin: 1.5rem auto 0; font-size: 1.1rem; color: #666; font-weight: 300; }
+
+/* Centered Gallery Grid */
+#gallery { padding-top: 50px; }
+.section-header { text-align: center; margin-bottom: 60px; padding: 0 var(--side-padding); }
+.section-header h2 { font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 1rem; }
+
+.gallery-grid { 
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 5vw; 
+    padding: 0 var(--side-padding); max-width: 1600px; margin: 0 auto 100px;
+}
+
+.art-item { width: 380px; text-align: center; cursor: pointer; position: relative; }
 .frame { 
     padding: 10px; border: 1px solid var(--border); background: white; 
-    overflow: hidden; /* Keeps the zoom inside the border */
-    transition: 0.5s ease;
+    overflow: hidden; transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1); 
 }
 
+/* FIX: Forces square crop for symmetry in the grid only */
 .art-item img { 
-    width: 100%; height: 450px; object-fit: cover; 
-    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); /* Smooth Zoom */
+    width: 100%; height: 400px; object-fit: cover; 
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.art-item:hover img { transform: scale(1.1); } /* Makes photo bigger on hover */
-.art-item:hover .frame { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.art-item:hover img { transform: scale(1.08); }
+.art-item:hover .frame { box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-color: transparent; }
 
-/* 3. Scroll Reveal Logic */
-.reveal { 
-    opacity: 0; 
-    transform: translateY(40px); 
-    transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); 
+.art-meta { padding-top: 1.5rem; text-align: left; }
+.art-meta h3 { font-family: 'Playfair Display'; font-size: 1.4rem; font-weight: 700; }
+.art-meta span { color: #888; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+/* Deep Dive: Full-Size Image Detail Section */
+.detail-section { 
+    min-height: 100vh; display: flex; align-items: center; justify-content: center; 
+    padding: 10vh var(--side-padding); background: #fafafa; border-bottom: 1px solid #eee;
 }
 
-.reveal.show { 
-    opacity: 1; 
-    transform: translateY(0); 
+.detail-container { 
+    display: flex; gap: 8vw; align-items: center; 
+    max-width: 1300px; width: 100%; margin: 0 auto;
 }
 
-/* Layout Centering */
-.hero { height: 70vh; display: flex; align-items: center; padding: 0 10%; background: #fdfdfd; }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1.1; }
-.accent { color: var(--accent); font-style: italic; }
+/* THE FIX: Prevents cropping in details */
+.detail-img { flex: 1; max-width: 60%; display: flex; justify-content: center; }
+.detail-img img { 
+    width: auto; height: auto; 
+    max-width: 100%; max-height: 80vh; /* Limits height to fit the screen */
+    object-fit: contain; /* THE FIX: Keeps original full canvas and aspect ratio */
+    box-shadow: 30px 30px 80px rgba(0,0,0,0.08); 
+    border: 1px solid #ddd;
+}
 
-.gallery-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 4rem; padding: 80px 10%; max-width: 1400px; margin: 0 auto; }
-.art-item { width: 400px; text-align: center; cursor: pointer; }
+.detail-text { flex: 1; max-width: 500px; }
+.category { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+.detail-text h2 { font-family: 'Playfair Display'; font-size: 3.5rem; margin: 1rem 0 2rem; line-height: 1.2; }
+.detail-text p { font-size: 1.1rem; line-height: 1.9; color: #444; }
+.back-link { display: inline-block; margin-top: 3rem; text-decoration: none; color: #888; font-size: 0.9rem; transition: 0.3s; }
+.back-link:hover { color: var(--dark); transform: translateX(-5px); }
 
-.detail-section { padding: 100px 10%; background: #fafafa; border-bottom: 1px solid #eee; }
-.detail-container { display: flex; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
-.detail-img img { width: 500px; height: 650px; object-fit: cover; box-shadow: 20px 20px 60px rgba(0,0,0,0.08); }
 .inverted { flex-direction: row-reverse; }
 
-.about-flex { display: flex; align-items: center; gap: 5rem; padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
-.artist-photo img { width: 450px; height: 550px; object-fit: cover; border: 1px solid #eee; }
-
-footer { padding: 60px; text-align: center; font-size: 0.8rem; color: #999; letter-spacing: 2px; }
-
-@media (max-width: 900px) {
-    .detail-container, .about-flex, .inverted { flex-direction: column; text-align: center; gap: 3rem; }
-    .detail-img img, .artist-photo img { width: 100%; height: auto; }
-    .hero h1 { font-size: 3.5rem; }
+/* About Section Flex - Centered */
+#about { padding: 100px var(--side-padding); background: white; }
+.about-flex { 
+    display: flex; align-items: center; justify-content: center; gap: 6vw; 
+    max-width: 1300px; margin: 0 auto; 
 }
+
+.artist-photo { flex: 1; display: flex; justify-content: center; }
+.artist-photo img { 
+    width: 450px; height: 550px; object-fit: cover; 
+    border: 1px solid #eee; filter: grayscale(15%); 
+}
+
+.about-text { flex: 1; max-width: 550px; }
+.about-text h2 { font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 1.5rem; }
+.about-text p { font-size: 1.2rem; line-height: 2; color: #444; }
+
+footer { padding: 80px var(--side-padding); text-align: center; font-size: 0.8rem; color: #aaa; letter-spacing: 2px; }
+
+/* Mobile Compatibility */
+@media (max-width: 1024px) {
+    .detail-container, .about-flex, .inverted { flex-direction: column; text-align: center; gap: 4rem; }
+    .detail-img { max-width: 100%; }
+    .detail-img img { max-height: 50vh; }
+    .hero h1 { font-size: 3.5rem; }
+    .nav-links { gap: 1.5rem; }
+}
+
+/* Scroll Reveal logic */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
